@@ -9,7 +9,7 @@ import { NgOptimizedImage } from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
   ],
   imports: [
     BrowserModule,

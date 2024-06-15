@@ -1,0 +1,13 @@
+<div *ngIf="!hasAnimationEnded; else register" class="w-screen h-screen flex justify-center items-center" [@fade1s]>
+  <img
+    ngSrc="../../../../assets/images/logo/logo-no-background-black.png"
+    alt="NexaFit Logo"
+    class="w-4/6 h-auto animate-zoom-fade-in"
+    height="291"
+    width="1500"
+    draggable="false"
+  />
+</div>
+<ng-template #register>
+  <app-registration [@fade1s]></app-registration>
+</ng-template>
