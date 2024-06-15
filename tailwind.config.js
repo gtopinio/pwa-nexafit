@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       colors : {
         'creamy-gray': '#D9D9D9',
+        'lime-green': '#65C65E',
+        'mirage-black': '#212121',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in forwards',
