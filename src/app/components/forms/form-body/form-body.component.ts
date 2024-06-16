@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { fade1s, shake } from "../../../libraries/animation";
 
@@ -12,6 +12,7 @@ import { fade1s, shake } from "../../../libraries/animation";
   ]
 })
 export class FormBodyComponent implements OnInit {
+  @Output() formChange = new EventEmitter();
 
   registrationForm = this._formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -32,6 +33,13 @@ export class FormBodyComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.onFormChangeHandler();
+  }
+
+  onFormChangeHandler() {
+    this.registrationForm.valueChanges.subscribe(() => {
+      this.formChange.emit(this.registrationForm);
+    });
   }
 
   onNextPageHandler() {
