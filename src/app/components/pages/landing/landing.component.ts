@@ -10,7 +10,7 @@ import { fade1s } from "../../../libraries/animation";
   ]
 })
 export class LandingComponent implements OnInit {
-  onLaunchCountdown: number = 2;
+  onLaunchCountdown: number = 1;
   hasAnimationEnded: boolean = false;
 
   constructor() {

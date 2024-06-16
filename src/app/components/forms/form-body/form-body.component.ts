@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
+import { fade1s, shake } from "../../../libraries/animation";
 
 @Component({
   selector: 'app-form-body',
   templateUrl: './form-body.component.html',
-  styleUrls: ['./form-body.component.css']
+  styleUrls: ['./form-body.component.css'],
+  animations: [
+    fade1s,
+    shake
+  ]
 })
 export class FormBodyComponent implements OnInit {
 
@@ -13,12 +18,13 @@ export class FormBodyComponent implements OnInit {
     lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     contactNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-    dateOfBirth: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    birthday: ['', [Validators.required]]
   });
 
   termsOfService= 'Terms of Service';
   privacyPolicy= 'Privacy Policy';
+
+  nextPage: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder
@@ -26,6 +32,23 @@ export class FormBodyComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onNextPageHandler() {
+    const emailControl = this.registrationForm.get('email');
+
+    if(emailControl && emailControl.valid){
+      this.nextPage = true;
+    } else {
+      this.registrationForm.controls.email.markAsUntouched();
+      setTimeout(() => {
+        this.registrationForm.controls.email.markAsTouched();
+      });
+    }
+  }
+
+  onPreviousPageHandler() {
+    this.nextPage = false;
   }
 
 }
