@@ -48,6 +48,7 @@ export class FormBodyComponent implements OnInit {
   }
 
   onPreviousPageHandler() {
+    this.registrationForm.reset();
     this.nextPage = false;
   }
 
