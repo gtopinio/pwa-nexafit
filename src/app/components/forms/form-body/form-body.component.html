@@ -7,7 +7,7 @@
       Enter your email to sign up for NexaFit
     </h3>
   </div>
-  <div class="flex flex-col justify-center items-center">
+  <form [formGroup]="registrationForm" class="flex flex-col justify-center items-center">
     <div class="flex flex-col justify-center items-center p-3">
       <span class="p-float-label plight mt-2">
         <input
@@ -26,5 +26,26 @@
         class="mt-4 form-button p-button-raised"
       ></button>
     </div>
-  </div>
+
+    <p-divider class="w-[30rem] dark-divider" align="center">
+      <span class="plight text-creamy-gray text-sm bg-mirage-black">or continue with</span>
+    </p-divider>
+
+    <button
+      pButton
+      pRipple
+      icon="pi pi-google"
+      type="button"
+      label="Google"
+      class="mt-4 form-button p-button-raised"
+    ></button>
+
+    <div class="mt-2">
+      <span class="text-white text-center text-sm plight">
+        By clicking continue, you agree to our <br/>
+        <strong>{{ termsOfService }}</strong> and
+        <strong>{{ privacyPolicy }}</strong>
+      </span>
+    </div>
+  </form>
 </div>

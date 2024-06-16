@@ -17,6 +17,9 @@ export class FormBodyComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
+  termsOfService= 'Terms of Service';
+  privacyPolicy= 'Privacy Policy';
+
   constructor(
     private _formBuilder: FormBuilder
   ) {
