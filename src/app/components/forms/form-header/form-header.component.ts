@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-form-header',
+  templateUrl: './form-header.component.html',
+  styleUrls: ['./form-header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class FormHeaderComponent implements OnInit{
   @Input() caption!: string;
   @Input() imagePath!: string;
   imageWidth!: number;

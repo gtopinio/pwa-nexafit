@@ -1,0 +1,30 @@
+<div class="w-full h-full flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center space-y-2 mt-7">
+    <h3 class="pbold font-bold text-white text-lg">
+      Create an account
+    </h3>
+    <h3 class="pregular text-white text-sm">
+      Enter your email to sign up for NexaFit
+    </h3>
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center p-3">
+      <span class="p-float-label plight mt-2">
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          class="form-input"
+        />
+        <label for="email">Email</label>
+      </span>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Sign Up with Email"
+        class="mt-4 form-button p-button-raised"
+      ></button>
+    </div>
+  </div>
+</div>
