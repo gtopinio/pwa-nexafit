@@ -5,10 +5,9 @@ import { fromEvent, map, merge, Observable } from "rxjs";
   providedIn: 'root'
 })
 export class NetworkService {
+  networkObservable$: Observable<boolean>;
 
-  constructor() { }
-
-  createNetworkObservable() : Observable<boolean> {
+  constructor() {
     const online$ = fromEvent(window, 'online').pipe(
       map(() => true)
     );
@@ -16,6 +15,10 @@ export class NetworkService {
       map(() => false)
     );
 
-    return merge(online$, offline$);
+    this.networkObservable$ = merge(online$, offline$);
+  }
+
+  getInitialStatus(): boolean {
+    return navigator.onLine;
   }
 }

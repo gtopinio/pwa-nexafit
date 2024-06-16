@@ -8,8 +8,9 @@ import { FormGroup } from "@angular/forms";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
 })
-export class RegistrationComponent implements OnInit, OnDestroy{
-  private onlineOfflineSubscription!: Subscription;
+export class RegistrationComponent implements OnInit, OnDestroy {
+  onlineOfflineSubscription!: Subscription;
+  offlineSubscription!: Subscription;
   isOnline!: boolean;
 
   registrationForm!: FormGroup;
@@ -17,21 +18,26 @@ export class RegistrationComponent implements OnInit, OnDestroy{
   constructor(
     private _networkService: NetworkService,
   ) {
-    this.isOnline = navigator.onLine;
+    this.isOnline = this._networkService.getInitialStatus();
+    this.subscribeToNetworkObservable();
   }
 
   ngOnInit(): void {
-    this.networkHandler();
+    console.log(`Initial Internet connection: ${this.isOnline ? 'Online' : 'Offline'}`);
   }
 
   ngOnDestroy(): void {
     if (this.onlineOfflineSubscription) {
       this.onlineOfflineSubscription.unsubscribe();
     }
+
+    if (this.offlineSubscription) {
+      this.offlineSubscription.unsubscribe();
+    }
   }
 
-  networkHandler() {
-    this.onlineOfflineSubscription = this._networkService.createNetworkObservable().subscribe(
+  subscribeToNetworkObservable() {
+    this.onlineOfflineSubscription = this._networkService.networkObservable$.subscribe(
       (isOnline) => {
         this.isOnline = isOnline;
         console.log(`Internet connection: ${isOnline ? 'Online' : 'Offline'}`);
@@ -41,7 +47,6 @@ export class RegistrationComponent implements OnInit, OnDestroy{
 
   onFormChange(form: FormGroup) {
     this.registrationForm = form;
-    console.log("Form changed: ", form.value);
   }
 
 }
