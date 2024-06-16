@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './components/pages/landing/landing.component';
 import { RegistrationComponent } from "./components/pages/registration/registration.component";
+import { HeaderComponent } from './components/forms/header/header.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -18,4 +19,5 @@ export class AppRoutingModule { }
 export const routingComponents = [
   LandingComponent,
   RegistrationComponent,
+  HeaderComponent
 ];
