@@ -10,6 +10,10 @@
   @apply pregular text-black rounded-xl w-[30rem] drop-shadow-2xl;
 }
 
+.form-calendar .p-calendar .p-inputtext {
+  @apply pregular text-black rounded-xl w-[30rem] drop-shadow-2xl;
+}
+
 .form-button-inactive.p-button {
   @apply pregular text-black psemibold w-[30rem] rounded-xl bg-creamy-gray border-creamy-gray hover:bg-lime-green hover:text-black hover:border-lime-green transition duration-500 ease-in-out drop-shadow-2xl;
 }

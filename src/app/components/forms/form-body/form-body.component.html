@@ -73,12 +73,14 @@
         <label for="email">Last Name</label>
       </span>
       <span class="p-float-label plight mt-2">
-        <input
-          pInputText
+        <p-calendar
           id="birthday"
           formControlName="birthday"
-          class="form-input"
-        />
+          class="form-calendar"
+          dateFormat="MM dd, yy"
+          [showClear]="true"
+          [maxDate]="maxDate"
+        ></p-calendar>
         <label for="email">Date of Birth</label>
       </span>
       <span class="p-float-label plight mt-2">
@@ -105,7 +107,7 @@
       <button
         pButton
         pRipple
-        icon="pi pi-cross"
+        icon="pi pi-times"
         type="button"
         label="Cancel"
         class="mt-3 form-button-gray p-button-raised font-bold"

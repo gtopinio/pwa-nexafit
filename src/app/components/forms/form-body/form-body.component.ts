@@ -27,6 +27,8 @@ export class FormBodyComponent implements OnInit {
 
   nextPage: boolean = false;
 
+  maxDate = new Date();
+
   constructor(
     private _formBuilder: FormBuilder
   ) {

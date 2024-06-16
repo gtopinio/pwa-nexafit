@@ -11,29 +11,31 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { CalendarModule } from "primeng/calendar";
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    NgOptimizedImage,
-    DividerModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    RippleModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        NgOptimizedImage,
+        DividerModule,
+        InputTextModule,
+        ReactiveFormsModule,
+        ButtonModule,
+        RippleModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        CalendarModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
