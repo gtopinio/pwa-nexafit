@@ -13,6 +13,7 @@ import { fade1s, shake } from "../../../libraries/animation";
 })
 export class FormBodyComponent implements OnInit {
   @Output() formChange = new EventEmitter();
+  @Output() formSubmit = new EventEmitter();
 
   registrationForm = this._formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -24,9 +25,8 @@ export class FormBodyComponent implements OnInit {
 
   termsOfService= 'Terms of Service';
   privacyPolicy= 'Privacy Policy';
-
+  isSubmitting: boolean = false;
   nextPage: boolean = false;
-
   maxDate = new Date();
 
   constructor(
@@ -60,6 +60,18 @@ export class FormBodyComponent implements OnInit {
   onPreviousPageHandler() {
     this.registrationForm.reset();
     this.nextPage = false;
+  }
+
+  onSubmitHandler() {
+    if (this.registrationForm.valid) {
+      this.isSubmitting = true;
+      this.formSubmit.emit(this.registrationForm.value);
+      setTimeout(() => {
+        this.isSubmitting = false;
+        this.registrationForm.reset();
+        this.nextPage = false;
+      }, 2000);
+    }
   }
 
 }
