@@ -83,9 +83,14 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         this._messageService.add({severity: 'success', summary: 'Success', detail: 'Data sent.'});
       }
     } else {
-      console.log('No internet connection. Saving data...');
-      this._registrationService.removeCachedData();
-      this._registrationService.cacheRegistrationForm(this.registrationForm.value);
+      this._confirmationService.confirm({
+        message: "You are offline. Do you want to submit it for now?",
+        accept: () => {
+          console.log('No internet connection. Saving data...');
+          this._registrationService.removeCachedData();
+          this._registrationService.cacheRegistrationForm(this.registrationForm.value);
+        }
+      })
     }
   }
 
