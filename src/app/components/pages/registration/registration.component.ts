@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.subscribeToNetworkObservable();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     console.log(`Initial Internet connection: ${this.isOnline ? 'Online' : 'Offline'}`);
     const cachedData = this._registrationService.getCachedData();
     if (this.isOnline && cachedData) {
@@ -84,6 +84,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       console.log('No internet connection. Saving data...');
+      this._registrationService.removeCachedData();
       this._registrationService.cacheRegistrationForm(this.registrationForm.value);
     }
   }
