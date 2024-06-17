@@ -34,7 +34,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       this._confirmationService.confirm({
         message: 'You have unsent data. Do you want to submit it now?',
         accept: () => {
-          this.sendCachedData(cachedData);
+          if (this.isOnline) {
+            this.sendCachedData(cachedData);
+          } else {
+            this._messageService.add({severity: 'error', summary: 'Error', detail: `Data not sent. You're still offline`})
+          }
         }
       });
     } else {
