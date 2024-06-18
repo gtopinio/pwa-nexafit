@@ -6,24 +6,50 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width: 639px) {
+  .w-screen.h-screen.flex.bg-creamy-gray {
+    flex-direction: column;
+  }
+
+  .w-2\/6.relative.overflow-hidden {
+    display: none; /* Hide the Workout Banner */
+  }
+
+  .w-4\/6.flex.items-center.justify-center {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bg-lime-green.w-11\/12.h-full.flex.items-center.justify-center {
+    width: 100%;
+    height: 100%;
+    padding: 1rem; /* Add some padding for smaller screens */
+  }
+
+  .bg-mirage-black.w-11\/12.h-full.flex.flex-col.items-center {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .form-input.p-inputtext {
-  @apply pregular text-black rounded-xl w-[30rem] drop-shadow-2xl;
+  @apply pregular text-black rounded-xl w-[15rem] md:w-[30rem] drop-shadow-2xl;
 }
 
 .form-calendar .p-calendar .p-inputtext {
-  @apply pregular text-black rounded-xl w-[30rem] drop-shadow-2xl;
+  @apply pregular text-black rounded-xl w-[15rem] md:w-[30rem] drop-shadow-2xl;
 }
 
 .form-button-inactive.p-button {
-  @apply pregular text-black psemibold w-[30rem] rounded-xl bg-creamy-gray border-creamy-gray hover:bg-lime-green hover:text-black hover:border-lime-green transition duration-500 ease-in-out drop-shadow-2xl;
+  @apply pregular text-black psemibold w-[15rem] md:w-[30rem] rounded-xl bg-creamy-gray border-creamy-gray hover:bg-lime-green hover:text-black hover:border-lime-green transition duration-500 ease-in-out drop-shadow-2xl;
 }
 
 .form-button-gray.p-button {
-  @apply pregular text-black psemibold w-[30rem] rounded-xl bg-creamy-gray border-creamy-gray hover:bg-creamy-gray hover:text-black hover:border-creamy-gray transition duration-500 ease-in-out drop-shadow-2xl;
+  @apply pregular text-black psemibold w-[15rem] md:w-[30rem] rounded-xl bg-creamy-gray border-creamy-gray hover:bg-creamy-gray hover:text-black hover:border-creamy-gray transition duration-500 ease-in-out drop-shadow-2xl;
 }
 
 .form-button-active.p-button {
-  @apply pregular text-black psemibold w-[30rem] rounded-xl bg-lime-green border-lime-green hover:bg-green-500 hover:text-black hover:border-green-500 transition duration-500 ease-in-out drop-shadow-2xl;
+  @apply pregular text-black psemibold w-[15rem] md:w-[30rem] rounded-xl bg-lime-green border-lime-green hover:bg-green-500 hover:text-black hover:border-green-500 transition duration-500 ease-in-out drop-shadow-2xl;
 }
 
 
