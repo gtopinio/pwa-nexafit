@@ -32,6 +32,7 @@ export class RegistrationService {
   }
 
   sendRegistrationData(registrationForm: any) {
+    // Simulates sending data to the server
     setTimeout(() => {
       console.log('Data sent:', registrationForm);
     }, 2000);

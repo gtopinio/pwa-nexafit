@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { fade1s, shake } from "../../../libraries/animation";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-form-body',
@@ -14,6 +15,7 @@ import { fade1s, shake } from "../../../libraries/animation";
 export class FormBodyComponent implements OnInit {
   @Output() formChange = new EventEmitter();
   @Output() formSubmit = new EventEmitter();
+  @Input() clearForm: Observable<any> = new Observable<any>();
 
   registrationForm = this._formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -36,6 +38,10 @@ export class FormBodyComponent implements OnInit {
 
   ngOnInit() {
     this.onFormChangeHandler();
+    this.clearForm.subscribe(() => {
+      this.registrationForm.reset();
+      this.nextPage = false;
+    });
   }
 
   onFormChangeHandler() {
@@ -62,12 +68,10 @@ export class FormBodyComponent implements OnInit {
   onSubmitHandler() {
     if (this.registrationForm.valid) {
       this.isSubmitting = true;
+      this.formSubmit.emit(this.registrationForm.value);
       setTimeout(() => {
-        this.formSubmit.emit(this.registrationForm.value);
         this.isSubmitting = false;
-        this.registrationForm.reset();
-        this.nextPage = false;
-      }, 2000);
+      }, 1000);
     }
     else {
       this.shakeInvalidControls();

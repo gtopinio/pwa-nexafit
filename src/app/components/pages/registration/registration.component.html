@@ -16,7 +16,7 @@
           imagePath="assets/images/logo/logo-no-background-white.png"
           caption="Elevate Your Fitness Journey"
         />
-        <app-form-body (formChange)="onFormChange($event)" (formSubmit)="onFormSubmit()"/>
+        <app-form-body [clearForm]="clearForm.asObservable()" (formChange)="onFormChange($event)" (formSubmit)="onFormSubmit()"/>
       </div>
     </div>
   </div>
