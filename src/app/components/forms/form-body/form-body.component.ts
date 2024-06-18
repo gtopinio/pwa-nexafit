@@ -62,8 +62,8 @@ export class FormBodyComponent implements OnInit {
   onSubmitHandler() {
     if (this.registrationForm.valid) {
       this.isSubmitting = true;
-      this.formSubmit.emit(this.registrationForm.value);
       setTimeout(() => {
+        this.formSubmit.emit(this.registrationForm.value);
         this.isSubmitting = false;
         this.registrationForm.reset();
         this.nextPage = false;

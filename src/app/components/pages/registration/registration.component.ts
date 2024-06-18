@@ -88,11 +88,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this._confirmationService.confirm({
-        message: "You are offline. Do you want to submit it for now?",
+        message: "You are offline. Do you want to submit it for later?",
         accept: () => {
           console.log('No internet connection. Saving data...');
           this._registrationService.removeCachedData();
           this._registrationService.cacheRegistrationForm(this.registrationForm.value);
+          this._messageService.add({severity: 'success', summary: 'Success', detail: 'Once you are online, please reload the page to send the data.'});
         }
       })
     }
