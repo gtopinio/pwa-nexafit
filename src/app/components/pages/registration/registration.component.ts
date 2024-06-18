@@ -4,6 +4,7 @@ import { NetworkService } from "../../../services/network.service";
 import { FormGroup } from "@angular/forms";
 import { RegistrationService } from "../../../services/registration.service";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { VersionCheckerService } from "../../../services/version-checker.service";
 
 @Component({
   selector: 'app-registration',
@@ -21,13 +22,15 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     private _messageService: MessageService,
     private _confirmationService: ConfirmationService,
     private _networkService: NetworkService,
-    private _registrationService: RegistrationService
+    private _registrationService: RegistrationService,
+    private _versionCheckerService: VersionCheckerService
   ) {
     this.isOnline = this._networkService.getInitialStatus();
     this.subscribeToNetworkObservable();
   }
 
   async ngOnInit(): Promise<void> {
+    this.checkUpdates();
     console.log(`Initial Internet connection: ${this.isOnline ? 'Online' : 'Offline'}`);
     const cachedData = this._registrationService.getCachedData();
     if (this.isOnline && cachedData) {
@@ -63,6 +66,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         console.log(`Internet connection: ${isOnline ? 'Online' : 'Offline'}`);
       }
     );
+  }
+
+  checkUpdates(){
+    if (this._versionCheckerService.isNewVersionAvailable) {
+      this._confirmationService.confirm({
+        message: 'A new version is available. Do you want to reload the page to update?',
+        accept: () => {
+          this._versionCheckerService.applyUpdate();
+        }
+      });
+    }
   }
 
   onFormChange(form: FormGroup) {
