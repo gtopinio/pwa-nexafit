@@ -74,6 +74,7 @@
       </span>
       <span class="p-float-label plight mt-2" [@shake]="registrationForm.controls.birthday.invalid && registrationForm.controls.birthday.touched ? 'active' : 'inactive'">
         <p-calendar
+          appendTo="body"
           id="birthday"
           formControlName="birthday"
           class="form-calendar"
