@@ -54,7 +54,7 @@
 <div *ngIf="nextPage" class="w-full h-full flex flex-col justify-center items-center" [@fade1s]>
   <form [formGroup]="registrationForm" class="flex flex-col justify-center items-center" (submit)="onSubmitHandler()">
     <div class="flex flex-col justify-center items-center p-3 space-y-6">
-      <span class="p-float-label plight">
+      <span class="p-float-label plight" [@shake]="registrationForm.controls.firstName.invalid && registrationForm.controls.firstName.touched ? 'active' : 'inactive'">
         <input
           pInputText
           id="firstName"
@@ -63,7 +63,7 @@
         />
         <label for="email">First Name</label>
       </span>
-      <span class="p-float-label plight mt-2">
+      <span class="p-float-label plight mt-2" [@shake]="registrationForm.controls.lastName.invalid && registrationForm.controls.lastName.touched ? 'active' : 'inactive'">
         <input
           pInputText
           id="lastName"
@@ -72,7 +72,7 @@
         />
         <label for="email">Last Name</label>
       </span>
-      <span class="p-float-label plight mt-2">
+      <span class="p-float-label plight mt-2" [@shake]="registrationForm.controls.birthday.invalid && registrationForm.controls.birthday.touched ? 'active' : 'inactive'">
         <p-calendar
           id="birthday"
           formControlName="birthday"
@@ -83,7 +83,7 @@
         ></p-calendar>
         <label for="email">Date of Birth</label>
       </span>
-      <span class="p-float-label plight mt-2">
+      <span class="p-float-label plight mt-2" [@shake]="registrationForm.controls.contactNumber.invalid && registrationForm.controls.contactNumber.touched ? 'active' : 'inactive'">
         <input
           pInputText
           id="contactNumber"

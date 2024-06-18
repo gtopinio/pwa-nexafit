@@ -50,10 +50,7 @@ export class FormBodyComponent implements OnInit {
     if(emailControl && emailControl.valid){
       this.nextPage = true;
     } else {
-      this.registrationForm.controls.email.markAsUntouched();
-      setTimeout(() => {
-        this.registrationForm.controls.email.markAsTouched();
-      });
+      this.shakeInvalidControls();
     }
   }
 
@@ -72,6 +69,21 @@ export class FormBodyComponent implements OnInit {
         this.nextPage = false;
       }, 2000);
     }
+    else {
+      this.shakeInvalidControls();
+    }
+  }
+
+  shakeInvalidControls() {
+    Object.keys(this.registrationForm.controls).forEach(key => {
+      const control = this.registrationForm.get(key);
+      if (control && control.invalid) {
+        control.markAsUntouched();
+        setTimeout(() => {
+          control.markAsTouched();
+        }, 100);
+      }
+    });
   }
 
 }
