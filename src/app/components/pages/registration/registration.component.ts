@@ -44,6 +44,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
           } else {
             this._messageService.add({severity: 'error', summary: 'Error', detail: `Data not sent. You're still offline`})
           }
+        },
+        reject: () => {
+          setTimeout(() => {
+            this.confirmRemoveCachedData();
+          }, 500);
         }
       });
     } else {
@@ -104,6 +109,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
           } else {
             this._messageService.add({severity: 'error', summary: 'Error', detail: `Data not sent. You're still offline`})
           }
+        },
+        reject: () => {
+          setTimeout(() => {
+            this.confirmRemoveCachedData();
+          }, 500);
         }
       });
     } else {
@@ -126,7 +136,16 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         this._confirmationService.confirm({
           message: 'You have unsent data. Do you want to proceed?',
           accept: () => {
-            this.sendCachedData(cachedRegistrationForm);
+            if (this.isOnline) {
+              this.sendCachedData(cachedRegistrationForm);
+            } else {
+              this._messageService.add({severity: 'error', summary: 'Error', detail: `Data not sent. You're still offline`})
+            }
+          },
+          reject: () => {
+            setTimeout(() => {
+              this.confirmRemoveCachedData();
+            }, 500);
           }
         });
       } else {
@@ -145,6 +164,20 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         }
       })
     }
+  }
+
+  confirmRemoveCachedData() {
+    this._confirmationService.confirm({
+      message: 'Do you want to remove the unsent data?',
+      accept: () => {
+        this._registrationService.removeCachedData();
+        this._messageService.add({severity: 'success', summary: 'Success', detail: 'Data removed.'});
+        this.resetForm();
+      },
+      reject: () => {
+        this._messageService.add({severity: 'info', summary: 'Info', detail: 'Data not removed.'});
+      }
+    });
   }
 
   sendCachedData(cachedData: any) {
