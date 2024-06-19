@@ -11,5 +11,9 @@
 <ng-template #register>
   <app-registration [@fade1s]></app-registration>
 </ng-template>
-<p-toast></p-toast>
+<p-toast
+  [breakpoints]="{
+  '639px': { width: '75%' },
+  }"
+></p-toast>
 <p-confirmDialog></p-confirmDialog>
